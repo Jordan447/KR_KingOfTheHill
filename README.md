@@ -119,7 +119,7 @@ It is not allowed to repack or unpack the mod or upload it back to the Steam wor
 <!-- CONTACT -->
 ## Contact
 
-Krypton91 - [@your_twitter](https://twitter.com/your_username) - krypton1@gmx.at
+Krypton91 - krypton1@gmx.at
 
 Project Link: [https://github.com/Krypton91/KR_KingOfTheHill](https://github.com/Krypton91/KR_KingOfTheHill)
 
