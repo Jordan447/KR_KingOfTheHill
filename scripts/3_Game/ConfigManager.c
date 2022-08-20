@@ -72,6 +72,8 @@ class KR_KingOfTheHillConfig
 
     void LoadDefaultSettings()
     {
+        string WorldName;
+        GetGame().GetWorldName(WorldName);
         m_ModVersion = m_CurrentVersion;
         m_CaptureTime = 900;
         m_UpdateInterval = 4;
@@ -89,13 +91,9 @@ class KR_KingOfTheHillConfig
         m_MaxEvents = 2;
         m_FlagName = "bldr_flag_chernarus_wall";
 
+        HandleStandartLocations(WorldName);
         //string ZoneName, float Radius, float CaptureRadius, bool ResetCaptureTimeAfterAllPlayersLeavedZone, vector Position, int AISpawnCount, string ObjectListName = "none", int LootTier
-        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Stary Sobor",  80, 20, true, Vector(6037.03, 300.77, 7828.89), 10, 1));
-        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Nordwest Airfield", 80, 20, true, Vector(4460.908, 342.623, 10455.90), 10, 1));
-        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Zelenogorsk", 80, 20, true, Vector(2256.03, 185.59, 5160.75), 10, 1));
-        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Novy Lug Military", 80, 20, true, Vector(9524.45, 240.15, 11780.40), 10, 1));
-        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("StaryYar", 80, 20, true, Vector(4884.66, 476.26, 14999.48), 10, 1));
-        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Airstrip Balota", 80, 20, true, Vector(4987.45, 9.51, 2476.15), 10, 1));
+        
 
         TStringArray M4Att = new TStringArray;
         M4Att.Insert("Mag_STANAG_30Rnd");
@@ -117,6 +115,69 @@ class KR_KingOfTheHillConfig
         m_Creatures.Insert("ZmbM_usSoldier_normal_Desert");
         m_Creatures.Insert("Animal_UrsusArctos");
         Save();
+    }
+
+    void HandleChernarus()
+    {
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Stary Sobor",  80, 20, true, Vector(6037.03, 300.77, 7828.89), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Nordwest Airfield", 80, 20, true, Vector(4460.908, 342.623, 10455.90), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Zelenogorsk", 80, 20, true, Vector(2256.03, 185.59, 5160.75), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Novy Lug Military", 80, 20, true, Vector(9524.45, 240.15, 11780.40), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("StaryYar", 80, 20, true, Vector(4884.66, 476.26, 14999.48), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Airstrip Balota", 80, 20, true, Vector(4987.45, 9.51, 2476.15), 10, 1));
+    }
+
+    void HandleDeerisle()
+    {
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Sunset Cross Military",  60, 30, true, Vector( 6651.72, 17.29, 6851.60), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Airfield", 60, 30, true, Vector(5515.50, 67.09, 3799.81), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Airfield", 60, 30, true, Vector( 5523.56, 74.01, 3606.71), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Paris Island", 60, 30, true, Vector(3198.09,18.45, 4150.25), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Prison", 60, 30, true, Vector( 5556.52, 34.84, 732.72), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Camp Eagle", 60, 30, true, Vector(8834.75, 45.41, 3797.18), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("East Harbor", 60, 30, true, Vector( 11415.52, 19.79, 10114.19), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Area 42 Prison", 60, 30, true, Vector( 13328.39, 12.92, 9756.89), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Rockenheim Circuit", 60, 30, true, Vector( 9789.67, 39.98, 11092.82), 10, 1));
+        m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Power Plant", 60, 30, true, Vector( 4635.28, 20.42, 7071.34), 10, 1));
+    }
+
+    void HandleNamalsk()
+    {
+
+    }
+
+    void HandleStandartLocations(string MapName)
+    {
+        MapName.ToLower();
+        switch(MapName)
+        {
+            case "chernarusplus":
+            {
+                HandleChernarus();
+                break;
+            }
+            case "chernarusplusgloom":
+            {
+                HandleChernarus();
+                break;
+            }
+
+            case "deerisle":
+            {
+                HandleDeerisle();
+                break;
+            }
+            case "namalsk":
+            {
+                HandleNamalsk();
+                break;
+            }
+            default:
+            {
+                m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Unkown Map", 0, 0, false, vector.Zero, 0, 0));
+                m_HillLocations.Insert(new autoptr KR_KingOfTheHillLocation("Unkown Map Another Example", 0, 0, false, vector.Zero, 0, 0));
+            }
+        }
     }
 
     void InitialNewConfig(KR_KingOfTheHillOldConfig oldCfg)
