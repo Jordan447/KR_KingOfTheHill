@@ -1,0 +1,14 @@
+enum KOTH_RPCs
+{
+    //Client -> Server
+    RPC_ADDTOZONE = 32947321,
+    RPC_REMOVEFROMZONE,
+    RPC_GETALLEVENTS,
+    
+    //Server -> Client
+    RPC_RECIVEZONE,
+    RPC_SETCLIENTINZONE,
+    RPC_REMOVEZONE,
+    RPC_RECIVEALLEVENTS,
+    RPC_SYNCCAPTURE
+};
